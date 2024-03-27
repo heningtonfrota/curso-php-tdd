@@ -3,9 +3,8 @@
 namespace Tests\Core\Orders;
 
 use Core\Orders\Product;
+use Mockery;
 use PHPUnit\Framework\TestCase;
-
-use function PHPUnit\Framework\assertEquals;
 
 class ProductUnitTest extends TestCase
 {
@@ -35,6 +34,21 @@ class ProductUnitTest extends TestCase
         
         $this->assertEquals(120, $product->total());
         $this->assertEquals(132, $product->totalWithTax10());
+
+        $this->assertTrue(true);
+    }
+
+    public function testExampleMock()
+    {
+        $mockProduct = Mockery::mock(Product::class, [
+            'id', 'name', 12, 1
+        ]);
+
+        $mockProduct
+            ->shouldReceive('getId')
+            ->andReturn('id');
+
+        Mockery::close();
 
         $this->assertTrue(true);
     }
